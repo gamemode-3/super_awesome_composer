@@ -1,5 +1,7 @@
 #![allow(unused)]
 
+use druid::Data;
+
 #[derive(PartialEq, Copy, Clone, Debug)]
 pub enum Accidental {
     Flat,
@@ -36,7 +38,7 @@ pub struct NoteValueResult {
     pub error: f32,
 }
 
-#[derive(PartialEq, Copy, Clone, Debug)]
+#[derive(PartialEq, Copy, Clone, Debug, Data)]
 pub struct Pitch(f32);
 
 impl Pitch {

@@ -31,16 +31,19 @@ fn bottom_bar() -> impl Widget<State> {
     Button::new("bottom bar button")
 }
 
-fn main() {
+fn open_window_with(state: State) {
     let main_window = WindowDesc::new(build_ui())
         .window_size((600.0, 400.0))
-        .title("My first Druid App")
+        .title("Awesome Music Composer")
         .set_window_state(WindowState::Maximized);
-    let initial_data = State::new();
 
     AppLauncher::with_window(main_window)
-        .launch(initial_data)
+        .launch(state)
         .expect("Failed to launch application");
+}
+
+fn main() {
+    open_window_with(State::new());
 }
 
 #[test]

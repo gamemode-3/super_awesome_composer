@@ -1,4 +1,4 @@
-use super::pitch::Pitch;
+use std::fmt::{format, Display};
 
 #[derive(Debug)]
 pub struct Project {
@@ -20,11 +20,7 @@ impl Default for Project {
 
 impl core::fmt::Display for Project {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(
-            f,
-            "--- metadata ---\n{}\n----------------\n{}",
-            self.metadata, self.content
-        )
+        write!(f, "--- metadata ---\n{}\n----------------\n{}", self.metadata, self.content)
     }
 }
 
@@ -297,7 +293,7 @@ impl Note {
 
 #[derive(Debug)]
 pub struct PitchPoint {
-    pitch: Pitch,
+    pitch: f32,
     velocity: f32,
     rel_beat: f32,
 }
@@ -305,11 +301,15 @@ pub struct PitchPoint {
 #[derive(Debug)]
 pub struct RhythmPoint {
     divisions: u32,
+    connect_next: Option<bool>,
 }
 
 impl RhythmPoint {
     pub fn new(divisions: u32) -> Self {
-        RhythmPoint { divisions }
+        RhythmPoint {
+            divisions,
+            connect_next: None,
+        }
     }
 }
 
